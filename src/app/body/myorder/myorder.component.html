@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <h1>{{ customerName }}</h1>
+    <table class="table table-hover">
+      <!-- <caption> Total: {{ sum }}</caption> -->
+      <thead>
+        <tr>
+          <th scope="col">NO</th>
+          <th scope="col">Billnumber</th>
+          <th scope="col">Price</th>
+          <th scope="col">Status</th>
+          <th scope="col">Date</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataMyorder; let i = index">
+          <th>{{ i + 1 }}</th>
+          <td>{{ item.billnumber }}</td>
+          <td>{{ item.price | currency:'CNY':'symbol-narrow' }}</td>
+          <td>{{ item.status}}</td>
+          <td>{{ item.createdAt | date:'dd/MM/yyyy hh:mm:ss a'}}</td>
+          <td>
+            <li class="list-inline-item">
+              <button class="btn btn-primary fa fa-search" (click)="onShowDetail(item.billnumber)" data-toggle="modal"
+                data-target="#exampleModal"></button>
+            </li>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row" *ngIf="!dataMyorder" style="margin:auto">
+    <h1>Emtry Order</h1>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <!-- <caption> Total: {{ sum }}</caption> -->
+          <thead>
+            <tr>
+              <th scope="col">NO</th>
+              <th scope="col">Billnumber</th>
+              <th scope="col">Proname</th>
+              <th scope="col">QTY</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of detailBill; let i = index">
+              <th>{{ i + 1 }}</th>
+              <td>{{ item.billnumber }}</td>
+              <td>{{ item.proName }}</td>
+              <td>{{ item.qty }}</td>
+              <td>{{ item.price | currency:'CNY':'symbol-narrow' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

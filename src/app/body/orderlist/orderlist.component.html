@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row" *ngIf="carts">
+    <table class="table table-hover">
+      <!-- <caption> Total: {{ sum }}</caption> -->
+      <thead>
+        <tr>
+          <th scope="col">NO</th>
+          <th scope="col">Proname</th>
+          <th scope="col">category</th>
+          <th scope="col">price</th>
+          <th scope="col">QTY</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of carts; let i = index">
+          <th>{{ i + 1 }}</th>
+          <td>{{ item.proName }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.price | currency:'CNY':'symbol-narrow' }}</td>
+          <td style="width: 10px">
+            <input type="number" value="{{item.qty_in_cart}}" [(ngModel)]="item.qty_in_cart">
+          </td>
+          <td>
+            <li class="list-inline-item">
+              <button class="btn btn-danger fa fa-trash-o" (click)="onDeletecart(item)"></button>
+            </li>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-success" (click)="onConfirmOrder()" *ngIf="carts.length != 0">ConfirmOrder</button>
+  </div>
+
+  <div class="row" *ngIf="!carts" style="margin:auto">
+    <h1>Emtry Order</h1>
+  </div>
+</div>

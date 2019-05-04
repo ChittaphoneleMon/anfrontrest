@@ -1,0 +1,11 @@
+<main class="col-md">
+  <form class="form" (ngSubmit)="onlogin(formlogin.value)" #formlogin="ngForm">
+    <div class="form-group">
+      <div class="form-group">
+        <h2>Sign IN</h2>
+        <input type="text" class="form-control" ngModel name="customer" autofocus>
+      </div>
+      <button type="submit" class="btn btn-success">login</button>
+    </div>
+  </form>
+</main>

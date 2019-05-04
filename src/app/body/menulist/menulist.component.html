@@ -1,0 +1,343 @@
+<!-- Page Content -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2">
+      <h1 class="my-4">Menu</h1>
+      <div
+        class="nav flex-column nav-pills"
+        id="v-pills-tab"
+        role="tablist"
+        aria-orientation="vertical"
+      >
+        <a
+          class="nav-link active"
+          id="v-pills-home-tab"
+          data-toggle="pill"
+          href="#v-pills-home"
+          role="tab"
+          aria-controls="v-pills-home"
+          aria-selected="true"
+          >BREAKFAST</a
+        >
+        <a
+          class="nav-link"
+          id="v-pills-profile-tab"
+          data-toggle="pill"
+          href="#v-pills-profile"
+          role="tab"
+          aria-controls="v-pills-profile"
+          aria-selected="false"
+          >LUNCH</a
+        >
+        <a
+          class="nav-link"
+          id="v-pills-messages-tab"
+          data-toggle="pill"
+          href="#v-pills-messages"
+          role="tab"
+          aria-controls="v-pills-messages"
+          aria-selected="false"
+          >DINNER</a
+        >
+        <a
+          class="nav-link"
+          id="v-pills-settings-tab"
+          data-toggle="pill"
+          href="#v-pills-settings"
+          role="tab"
+          aria-controls="v-pills-settings"
+          aria-selected="false"
+          >DRINK</a
+        >
+      </div>
+    </div>
+    <!-- /.col-lg-3 -->
+
+    <div class="col-lg-7">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div
+          class="tab-pane fade show active"
+          id="v-pills-home"
+          role="tabpanel"
+          aria-labelledby="v-pills-home-tab"
+        >
+          <div class="row" style="margin-top: 40px">
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              *ngFor="let item of dataProductBF"
+            >
+              <div class="card h-100">
+                <div>
+                  <img
+                    class="card-img-top"
+                    src="{{ item.imgName }}"
+                    alt=""
+                    id="imageLoad"
+                  />
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    {{ item.proName }}
+                  </h4>
+                  <div class="quantity buttons_added">
+                    <input
+                      type="button"
+                      value="-"
+                      class="minus"
+                      style="background-color: #ff000094"
+                      (click)="onMinus()"
+                    />
+                    <input
+                      type="number"
+                      step="1"
+                      min="1"
+                      max="10"
+                      [(ngModel)]="qty"
+                      class="input-text qty text"
+                      (change)="onChangeInput()"
+                    />
+                    <input
+                      type="button"
+                      value="+"
+                      class="plus"
+                      style="background-color: #00ff8494"
+                      (click)="onPlus()"
+                    />
+                  </div>
+                  <hr />
+                  <h5>{{ item.price | currency: "CNY":"symbol-narrow" }}</h5>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    (click)="addToCarts(item)"
+                  >
+                    <i class="fa fa-shopping-cart"></i> Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.row -->
+        </div>
+        <div
+          class="tab-pane fade"
+          id="v-pills-profile"
+          role="tabpanel"
+          aria-labelledby="v-pills-profile-tab"
+        >
+          <div class="row" style="margin-top: 40px">
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              *ngFor="let item of dataProductLH"
+            >
+              <div class="card h-100">
+                <img class="card-img-top" src="{{ item.imgName }}" alt="" />
+                <div class="card-body">
+                  <h4 class="card-title">
+                    {{ item.proName }}
+                  </h4>
+                  <div class="quantity buttons_added">
+                    <input
+                      type="button"
+                      value="-"
+                      class="minus"
+                      style="background-color: #ff000094"
+                      (click)="onMinus()"
+                    />
+                    <input
+                      type="number"
+                      step="1"
+                      min="1"
+                      max="10"
+                      [(ngModel)]="qty"
+                      class="input-text qty text"
+                      (change)="onChangeInput()"
+                    />
+                    <input
+                      type="button"
+                      value="+"
+                      class="plus"
+                      style="background-color: #00ff8494"
+                      (click)="onPlus()"
+                    />
+                  </div>
+                  <hr />
+                  <h5>{{ item.price | currency: "CNY":"symbol-narrow" }}</h5>
+                  <button class="btn btn-primary" (click)="addToCarts(item)">
+                    <i class="fa fa-shopping-cart"></i> Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.row -->
+        </div>
+        <div
+          class="tab-pane fade"
+          id="v-pills-messages"
+          role="tabpanel"
+          aria-labelledby="v-pills-messages-tab"
+        >
+          <div class="row" style="margin-top: 40px">
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              *ngFor="let item of dataProductDN"
+            >
+              <div class="card h-100">
+                <img class="card-img-top" src="{{ item.imgName }}" alt="" />
+                <div class="card-body">
+                  <h4 class="card-title">
+                    {{ item.proName }}
+                  </h4>
+                  <div class="quantity buttons_added">
+                    <input
+                      type="button"
+                      value="-"
+                      class="minus"
+                      style="background-color: #ff000094"
+                      (click)="onMinus()"
+                    />
+                    <input
+                      type="number"
+                      step="1"
+                      min="1"
+                      max="10"
+                      [(ngModel)]="qty"
+                      class="input-text qty text"
+                      (change)="onChangeInput()"
+                    />
+                    <input
+                      type="button"
+                      value="+"
+                      class="plus"
+                      style="background-color: #00ff8494"
+                      (click)="onPlus()"
+                    />
+                  </div>
+                  <hr />
+                  <h5>{{ item.price | currency: "CNY":"symbol-narrow" }}</h5>
+                  <button class="btn btn-primary" (click)="addToCarts(item)">
+                    <i class="fa fa-shopping-cart"></i> Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.row -->
+        </div>
+        <div
+          class="tab-pane fade"
+          id="v-pills-settings"
+          role="tabpanel"
+          aria-labelledby="v-pills-settings-tab"
+        >
+          <div class="row" style="margin-top: 40px">
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              *ngFor="let item of dataProductDK"
+            >
+              <div class="card h-100">
+                <img class="card-img-top" src="{{ item.imgName }}" alt="" />
+                <div class="card-body">
+                  <h4 class="card-title">
+                    {{ item.proName }}
+                  </h4>
+                  <div class="quantity buttons_added">
+                    <input
+                      type="button"
+                      value="-"
+                      class="minus"
+                      style="background-color: #ff000094"
+                      (click)="onMinus()"
+                    />
+                    <input
+                      type="number"
+                      step="1"
+                      min="1"
+                      max="10"
+                      [(ngModel)]="qty"
+                      class="input-text qty text"
+                      (change)="onChangeInput()"
+                    />
+                    <input
+                      type="button"
+                      value="+"
+                      class="plus"
+                      style="background-color: #00ff8494"
+                      (click)="onPlus()"
+                    />
+                  </div>
+                  <hr />
+                  <h5>{{ item.price | currency: "CNY":"symbol-narrow" }}</h5>
+                  <button class="btn btn-primary" (click)="addToCarts(item)">
+                    <i class="fa fa-shopping-cart"></i> Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.row -->
+        </div>
+      </div>
+    </div>
+    <!-- /.col-lg-9 -->
+
+    <div class="col-lg-3">
+      <h1 class="my-4">Ordering</h1>
+      <div class="row" *ngIf="carts">
+        <table class="table table-hover">
+          <caption style="font-size: 1.5em; font-weight: bold">
+            Total:
+            {{
+              sum | currency: "CNY":"symbol-narrow"
+            }}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Proname</th>
+              <th scope="col" style="width: 20%">QTY</th>
+              <th scope="col">Price</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of carts; let i = index">
+              <td>{{ item.proName }}</td>
+              <td>
+                <input
+                  type="number"
+                  value="{{ item.qty_in_cart }}"
+                  [(ngModel)]="item.qty_in_cart"
+                  style="width: 100%"
+                  (change)="onChangeDataInOrdering(item)"
+                />
+              </td>
+
+              <td>{{ item.price | currency: "CNY":"symbol-narrow" }}</td>
+              <td>
+                <li class="list-inline-item">
+                  <button
+                    class="btn btn-danger fa fa-trash-o"
+                    (click)="onDeletecart(item)"
+                  ></button>
+                </li>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button
+          class="btn btn-success"
+          (click)="onConfirmOrder()"
+          *ngIf="carts.length != 0"
+        >
+          ConfirmOrder
+        </button>
+      </div>
+      <div class="row" *ngIf="!carts" style="margin:auto">
+        <h5>Empty Order</h5>
+      </div>
+    </div>
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
